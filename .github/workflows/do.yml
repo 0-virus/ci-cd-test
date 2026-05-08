@@ -1,4 +1,4 @@
-name: Github Actions 실행하기
+name: Github Actions 을 이용하여 배포하기
 
 on:
   push:
@@ -6,15 +6,12 @@ on:
       - main
 
 jobs:
-  My-First-CICD-Job:
+  depoloyment-job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: sample-web
+      - name: secret-variables-check
         run: |
-          pwd
-          ls -al
-      - name: echo text
-        run: |
-          echo "This is the first cicd step" >> a.txt
-          ls -al
-          cat a.txt
+          echo ${{ secrets.EC2_USER }} >> ec2_user.txt
+          echo ${{ secrets.EC2_PEM_KEY }} >> ec2_pem_key.txt
+          cat ec2_pem_key.txt

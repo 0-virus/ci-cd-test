@@ -13,6 +13,8 @@ jobs:
         run: |
           pwd
           ls -al
+      - name: echo text
+        run: |
           echo "This is the first cicd step" >> a.txt
           ls -al
           cat a.txt

@@ -6,9 +6,9 @@ on:
       - main
 
 env:
-  EC2_HOST: ${{ secrets.EC2.HOST }}
-  EC2_USERNAME: ${{ secrets.EC2.USERNAME }}
-  EC2_PRIVATE_KEY: ${{ secrets.EC2.PRIVATE_KEY }}
+  EC2_HOST: ${{ secrets.EC2_HOST }}
+  EC2_USERNAME: ${{ secrets.EC2_USERNAME }}
+  EC2_PRIVATE_KEY: ${{ secrets.EC2_PRIVATE_KEY }}
   DEPLOY_PATH: /var/www/html
 
 jobs:
@@ -22,9 +22,9 @@ jobs:
       - name: ec2 connect
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: EC2_HOST
-          username: EC2_USERNAME
-          key: EC2_PRIVATE_KEY
+          host: ${{ env.EC2_HOST }}
+          username: ${{ env.EC2_USERNAME }}
+          key: ${{ env.EC2_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/cicd_test
             ls -al
